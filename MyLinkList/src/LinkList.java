@@ -124,6 +124,26 @@ public class LinkList<E> implements List<E> {
     @Override
     public Object[] toArray() {
         return new Object[0];
+    public void clear() {
+        head = null;
+    }
+    @Override
+    public int indexOf(Object o) {
+        E data = (E)o;
+        NextStep<E> currentNode = head;
+
+        for (int i = 0; currentNode != null; i++){
+
+            if (currentNode.data == data){
+                return i;
+            }
+            currentNode = currentNode.nextElement;
+        }
+        return -1;
+    }
+
+    public List<E> subList(int fromIndex, int toIndex) {
+        return null;
     }
 
     @Override
