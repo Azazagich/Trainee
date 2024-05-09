@@ -2,6 +2,7 @@ public class NextStep<E>  {
     public E data;
     public NextStep<E> nextElement;
     private static int AmountOfElement;
+
     public static int getAmountOfElement() {
         return AmountOfElement;
     }

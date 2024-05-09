@@ -33,14 +33,13 @@ public class LinkList<E> implements List<E> {
 
     public void print() {
         NextStep<E> startPoint = head;
+        System.out.print("[");
         while (startPoint != null) {
-            if (startPoint == head) {
-                System.out.print("[");
-            }
             System.out.print(" " + startPoint.data + " ");
             startPoint = startPoint.nextElement;
         }
         System.out.print("]");
+        System.out.println();
     }
 
     @Override
@@ -77,9 +76,9 @@ public class LinkList<E> implements List<E> {
 
     @Override
     public Object[] toArray() {
-        Object[] arr = new Object[NextStep.getAmountOfElement()-1];
+        Object[] arr = new Object[NextStep.getAmountOfElement()];
         NextStep<E> lst = head;
-        for ( int i = 0; lst.nextElement != null; i++){
+        for ( int i = 0; lst != null; i++){
                 arr[i] = lst.data;
             lst = lst.nextElement;
         }
@@ -88,7 +87,11 @@ public class LinkList<E> implements List<E> {
 
     //Working with edge cases
   @Override
-    public boolean remove(Object o) {
+    public boolean remove(Object o) throws NullPointerException {
+        if (o == null){
+            throw new NullPointerException("get a null but we need a reference to object");
+        }
+
         E data = (E)o;
 
         boolean isRemove = false;
@@ -122,11 +125,10 @@ public class LinkList<E> implements List<E> {
     }
 
     @Override
-    public Object[] toArray() {
-        return new Object[0];
     public void clear() {
         head = null;
     }
+
     @Override
     public int indexOf(Object o) {
         E data = (E)o;
@@ -142,19 +144,28 @@ public class LinkList<E> implements List<E> {
         return -1;
     }
 
+    @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        NextStep<E> currentNode = head;
+        List<E> lst = new LinkList<>();
+        for (int i = 0; currentNode != null; i++){
+            if (i == fromIndex || i <= toIndex){
+                lst.add(currentNode.data);
+            }
+            currentNode = currentNode.nextElement;
+            if (i == toIndex) {
+                break;
+            }
+        }
+        return lst;
     }
 
+    /////////////////////////////////////////////////////////////////
     @Override
     public <T> T[] toArray(T[] a) {
         return null;
     }
 
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
 
     @Override
     public boolean containsAll(Collection<?> c) {
@@ -182,11 +193,6 @@ public class LinkList<E> implements List<E> {
     }
 
     @Override
-    public void clear() {
-
-    }
-
-    @Override
     public E get(int index) {
         return null;
     }
@@ -206,10 +212,6 @@ public class LinkList<E> implements List<E> {
         return null;
     }
 
-    @Override
-    public int indexOf(Object o) {
-        return 0;
-    }
 
     @Override
     public int lastIndexOf(Object o) {
@@ -227,7 +229,8 @@ public class LinkList<E> implements List<E> {
     }
 
     @Override
-    public List<E> subList(int fromIndex, int toIndex) {
+    public Iterator<E> iterator() {
         return null;
     }
+
 }
