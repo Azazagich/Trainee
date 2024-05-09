@@ -79,6 +79,15 @@ public class LinkList<E> implements List<E> {
     @Override
     public Iterator<E> iterator() {
         return null;
+    public Object[] toArray() {
+        Object[] arr = new Object[NextStep.getAmountOfElement()-1];
+        NextStep<E> lst = head;
+        for ( int i = 0; lst.nextElement != null; i++){
+                arr[i] = lst.data;
+            lst = lst.nextElement;
+        }
+        return arr;
+    }
     }
 
     @Override
