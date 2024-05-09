@@ -58,7 +58,6 @@ public class LinkList<E> implements List<E> {
     public boolean isEmpty() {
        // NextStep<E> lst = new NextStep<>(head.data);
         return head == null;
-
     }
 
     @Override
@@ -77,8 +76,6 @@ public class LinkList<E> implements List<E> {
     }
 
     @Override
-    public Iterator<E> iterator() {
-        return null;
     public Object[] toArray() {
         Object[] arr = new Object[NextStep.getAmountOfElement()-1];
         NextStep<E> lst = head;
@@ -88,6 +85,40 @@ public class LinkList<E> implements List<E> {
         }
         return arr;
     }
+
+    //Working with edge cases
+  @Override
+    public boolean remove(Object o) {
+        E data = (E)o;
+
+        boolean isRemove = false;
+
+        NextStep<E> currentNode = head;
+        NextStep<E> prevNode = head;
+
+      if (data.equals(head.data)){
+
+          head = currentNode.nextElement;
+          currentNode.nextElement = null;
+
+          isRemove = true;
+          return isRemove;
+      }
+
+        while (currentNode != null){
+
+            if (data.equals(currentNode.data)){
+                prevNode.nextElement = currentNode.nextElement;
+
+                currentNode.nextElement = null;
+                isRemove = true;
+
+                break;
+            }
+            prevNode = currentNode;
+            currentNode = currentNode.nextElement;
+        }
+        return isRemove;
     }
 
     @Override
