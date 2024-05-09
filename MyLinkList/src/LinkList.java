@@ -63,7 +63,17 @@ public class LinkList<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        String element = String.valueOf(o);
+        NextStep<E> startPoint = head;
+        boolean isContain = false;
+        while (startPoint.nextElement != null) {
+            startPoint = startPoint.nextElement;
+            if (element == startPoint.data){
+                isContain = true;
+                break;
+            }
+        }
+        return isContain;
     }
 
     @Override
