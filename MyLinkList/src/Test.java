@@ -1,12 +1,11 @@
 import java.util.LinkedList;
-import java.util.List;
 
 public class Test {
     public static void main(String[] args){
 
-        LinkList<String> link = new LinkList<>();
-        LinkList<String> link2 = new LinkList<>();
-        LinkList<Integer> link3 = new LinkList<>();
+        LinkListSingle<String> link = new LinkListSingle<>();
+        LinkListSingle<String> link2 = new LinkListSingle<>();
+        LinkListSingle<Integer> link3 = new LinkListSingle<>();
         link.add("element1");
         link.add("element2");
         link.add("element3");

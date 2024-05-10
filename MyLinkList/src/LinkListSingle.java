@@ -6,7 +6,7 @@ import java.util.*;
  */
 
 
-public class LinkList<E> implements List<E> {
+public class LinkListSingle<E> implements List<E> {
     private NextStep<E> head;
 
     @Override
@@ -147,7 +147,7 @@ public class LinkList<E> implements List<E> {
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
         NextStep<E> currentNode = head;
-        List<E> lst = new LinkList<>();
+        List<E> lst = new LinkListSingle<>();
         for (int i = 0; currentNode != null; i++){
             if (i == fromIndex || i <= toIndex){
                 lst.add(currentNode.data);
