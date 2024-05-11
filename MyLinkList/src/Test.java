@@ -14,11 +14,18 @@ public class Test {
         link.add("element6");
         link.add("element7");
 
+        link2.add("element1");
+        link2.add("element2");
+        link2.add("element3");
+
+
+
 
 //        link.print();
 
 
-//        System.out.println("Size of LinkList: " + link.size());
+        System.out.println("Size of LinkList: " + link.size());
+        System.out.println("Size of LinkList: " + link2.size());
 
 
 //        System.out.println(link2.isEmpty());

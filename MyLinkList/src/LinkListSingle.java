@@ -8,11 +8,13 @@ import java.util.*;
 
 public class LinkListSingle<E> implements List<E> {
     private NextStep<E> head;
+    // Why we put 0 on private
+    private int size = 0;
 
     @Override
     public boolean add (E data) {
         boolean isAddingToList;
-        NextStep<E> node = new NextStep<E>(data);
+        NextStep<E> node = new NextStep<>(data);
         node.data = data;
         if (head == null) {
             head = node;
@@ -44,13 +46,15 @@ public class LinkListSingle<E> implements List<E> {
 
     @Override
     public int size() {
-    //This
-       // return Integer.MAX_VALUE <= NextStep.getAmountOfElement() ? Integer.MAX_VALUE : NextStep.getAmountOfElement();
-    //or this
-        if (Integer.MAX_VALUE <= NextStep.getAmountOfElement()){
+        NextStep<E> startPoint = head;
+        while (startPoint != null) {
+            startPoint = startPoint.nextElement;
+            size++;
+        }
+        if (Integer.MAX_VALUE <= size){
             return Integer.MAX_VALUE;
         }
-        return NextStep.getAmountOfElement();
+        return size;
     }
 
     @Override
