@@ -5,11 +5,9 @@ import java.util.*;
  *
  */
 
-
 public class LinkListSingle<E> implements List<E> {
-    private NextStep<E> head;
-    // Why we put 0 on private
-    private int size = 0;
+    protected NextStep<E> head;
+    private int size;
 
     @Override
     public boolean add (E data) {
@@ -59,7 +57,6 @@ public class LinkListSingle<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-       // NextStep<E> lst = new NextStep<>(head.data);
         return head == null;
     }
 
@@ -80,7 +77,7 @@ public class LinkListSingle<E> implements List<E> {
 
     @Override
     public Object[] toArray() {
-        Object[] arr = new Object[NextStep.getAmountOfElement()];
+        Object[] arr = new Object[size];
         NextStep<E> lst = head;
         for ( int i = 0; lst != null; i++){
                 arr[i] = lst.data;
@@ -89,7 +86,6 @@ public class LinkListSingle<E> implements List<E> {
         return arr;
     }
 
-    //Working with edge cases
   @Override
     public boolean remove(Object o) throws NullPointerException {
         if (o == null){

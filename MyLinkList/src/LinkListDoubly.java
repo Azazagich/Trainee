@@ -2,29 +2,27 @@ import java.util.*;
 
 public class LinkListDoubly<E> extends LinkListSingle<E> /*implements List<E>*/ {
 
-    private NextStep<E> head;
-    private NextStep<E> tail;
-
+    protected NextStep<E> tail;
     @Override
     public boolean add (E data) {
-        boolean isAddingToList = false;
+        if (data == null){
+            throw new NullPointerException("get a null but we need a reference to object");
+        }
+
         NextStep<E> currentNode = new NextStep<>(data);
-        NextStep<E> lastPoint = currentNode;
-        NextStep<E> startPoint = head;
-        while (startPoint != null){
-            startPoint = startPoint.nextElement;
+        currentNode.data = data;
 
+        if (head == null) {
+            head = currentNode;
+            tail = currentNode;
+        } else {
+            tail.nextElement = currentNode;
+            tail = currentNode;
         }
-
-
-        while (currentNode.nextElement != null){
-            currentNode = currentNode.nextElement;
-        }
-        currentNode.nextElement = currentNode;
-        isAddingToList = true;
 
         return true;
     }
+    
 
     /////////////////////////////////////////////////////////////////
 }
