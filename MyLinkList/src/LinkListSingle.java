@@ -6,8 +6,8 @@ import java.util.*;
  */
 
 public class LinkListSingle<E> implements List<E> {
-    protected NextStep<E> head;
-    private int size;
+    private NextStep<E> head;
+    private int size = 0;
 
     @Override
     public boolean add (E data) {
@@ -28,6 +28,7 @@ public class LinkListSingle<E> implements List<E> {
             startPoint.nextElement = node;
             isAddingToList = true;
         }
+        size++;
         return isAddingToList;
     }
 
@@ -44,15 +45,7 @@ public class LinkListSingle<E> implements List<E> {
 
     @Override
     public int size() {
-        NextStep<E> startPoint = head;
-        while (startPoint != null) {
-            startPoint = startPoint.nextElement;
-            size++;
-        }
-        if (Integer.MAX_VALUE <= size){
-            return Integer.MAX_VALUE;
-        }
-        return size;
+        return this.size;
     }
 
     @Override
@@ -86,15 +79,16 @@ public class LinkListSingle<E> implements List<E> {
         return arr;
     }
 
-  @Override
+    @Override
     public boolean remove(Object o) throws NullPointerException {
         if (o == null){
             throw new NullPointerException("get a null but we need a reference to object");
         }
+        if (!this.contains(o)){
+            throw new NumberFormatException();
+        }
 
         E data = (E)o;
-
-        boolean isRemove = false;
 
         NextStep<E> currentNode = head;
         NextStep<E> prevNode = head;
@@ -103,9 +97,6 @@ public class LinkListSingle<E> implements List<E> {
 
           head = currentNode.nextElement;
           currentNode.nextElement = null;
-
-          isRemove = true;
-          return isRemove;
       }
 
         while (currentNode != null){
@@ -114,14 +105,15 @@ public class LinkListSingle<E> implements List<E> {
                 prevNode.nextElement = currentNode.nextElement;
 
                 currentNode.nextElement = null;
-                isRemove = true;
 
                 break;
             }
             prevNode = currentNode;
             currentNode = currentNode.nextElement;
         }
-        return isRemove;
+
+        size--;
+        return true;
     }
 
     @Override

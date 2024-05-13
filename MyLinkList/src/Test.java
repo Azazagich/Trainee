@@ -3,10 +3,10 @@ import java.util.LinkedList;
 public class Test {
     public static void main(String[] args){
 
-        LinkListSingle<String> link = new LinkListSingle<>();
-        LinkListSingle<String> link2 = new LinkListSingle<>();
-        LinkListDoubly<String> link3 = new LinkListDoubly<>();
-        link.add("element1");
+//        LinkListSingle<String> link = new LinkListSingle<>();
+//        LinkListSingle<String> link2 = new LinkListSingle<>();
+          LinkListDoubly<String> link3 = new LinkListDoubly<>();
+//        link.add("element1");
 
 //        link.add("element2");
 //        link.add("element3");
@@ -21,14 +21,15 @@ public class Test {
 
 
         link3.add("element1");
-        link3.add("element1");
-        link3.add("element1");
-        link3.add("element1");
+        link3.add("element2");
+        link3.add("element3");
+        link3.add("element4");
+        link3.remove(1);
 //        link3.add("element2");
 //       link3.add("element3");
 
 
-        link.print();
+//        link.print();
         link3.print();
 
 
