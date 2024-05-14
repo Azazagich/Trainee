@@ -6,5 +6,6 @@ public class NextStep<E>  {
     public NextStep(E data){
         this.data = data;
         this.nextElement = null;
+        this.prevElement = null;
     }
 }

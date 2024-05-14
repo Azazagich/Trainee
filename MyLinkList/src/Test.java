@@ -24,9 +24,9 @@ public class Test {
         link3.add("element2");
         link3.add("element3");
         link3.add("element4");
-        link3.remove(1);
-//        link3.add("element2");
-//       link3.add("element3");
+        link3.remove(3);
+//      link3.add("element2");
+//      link3.add("element3");
 
 
 //        link.print();

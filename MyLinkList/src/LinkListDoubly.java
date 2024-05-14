@@ -19,10 +19,9 @@ public class LinkListDoubly<E> implements List<E> {
             this.tail = currentNode;
         } else {
             //
-            this.tail.prevElement = tail;
-            //
-            this.tail.nextElement = currentNode;
+            NextStep<E> currentTail = this.tail;
             this.tail = currentNode;
+            this.tail.prevElement = currentTail;
         }
 
         this.size++;
@@ -43,13 +42,12 @@ public class LinkListDoubly<E> implements List<E> {
             throw new IllegalArgumentException();
         }
 
-        if (index < this.size()/2){
+        if (index <= this.size() / 2){
             NextStep<E> currentNode = head;
             NextStep<E> prevNode = head;
             int count = 0;
 
             if (index == 1){
-
                 head = currentNode.nextElement;
                 currentNode.nextElement = null;
             }
@@ -67,28 +65,23 @@ public class LinkListDoubly<E> implements List<E> {
                 prevNode = currentNode;
                 currentNode = currentNode.nextElement;
             }
-
-        } else{
+//////////////////////////////
+        } else if(Objects.nonNull(this.tail)){
+           int count = this.size;
             NextStep<E> currentNode = tail;
-            NextStep<E> prevNode = tail;
-            int count = this.size;
-
-            while (count != index){
-                count--;
-
+            while (count >= 0){
                 if (count == index){
-                    currentNode.nextElement = null;
-                }
-
-                if (count == index){
-                    prevNode.nextElement = currentNode.nextElement;
-                    currentNode.nextElement = null;
-
+                    if(Objects.nonNull(currentNode.prevElement)) {
+                        currentNode.prevElement.nextElement = currentNode.nextElement;
+                    }
+                    if(Objects.nonNull(currentNode.nextElement)) {
+                        currentNode.nextElement.prevElement = currentNode.prevElement;
+                    }
                     break;
                 }
 
-                prevNode = currentNode;
-                currentNode = currentNode.nextElement;
+                currentNode = currentNode.prevElement;
+                count--;
             }
         }
         return null;
